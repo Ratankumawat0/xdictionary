@@ -15,7 +15,7 @@ function App() {
   // Function to handle the search
   const handleSearch = () => {
     if (!searchTerm.trim()) {
-      setResult("Word not found in the dictionary.");
+      setResult("Definition: Word not found in the dictionary.");
       return;
     }
 
@@ -26,15 +26,15 @@ function App() {
 
     // Set the result based on whether the word was found
     if (wordFound) {
-      setResult(wordFound.meaning);
+      setResult(`Definition: ${wordFound.meaning}`);
     } else {
-      setResult("Word not found in the dictionary.");
+      setResult("Definition: Word not found in the dictionary.");
     }
   };
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>XDictionary</h1>
+      <h1>Dictionary App</h1>
       <div>
         <input
           data-testid="search-input"
