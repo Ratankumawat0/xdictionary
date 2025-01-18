@@ -14,9 +14,14 @@ function App() {
 
   // Function to handle the search
   const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setResult("Word not found in the dictionary.");
+      return;
+    }
+
     // Perform a case-insensitive search
     const wordFound = dictionary.find(
-      (entry) => entry.word.toLowerCase() === searchTerm.toLowerCase()
+      (entry) => entry.word.toLowerCase() === searchTerm.trim().toLowerCase()
     );
 
     // Set the result based on whether the word was found
@@ -32,6 +37,7 @@ function App() {
       <h1>XDictionary</h1>
       <div>
         <input
+          data-testid="search-input"
           type="text"
           placeholder="Search a word..."
           value={searchTerm}
@@ -39,13 +45,14 @@ function App() {
           style={{ padding: "8px", width: "200px", marginRight: "10px" }}
         />
         <button
+          data-testid="search-button"
           onClick={handleSearch}
           style={{ padding: "8px 15px", cursor: "pointer" }}
         >
           Search
         </button>
       </div>
-      <div style={{ marginTop: "20px", fontSize: "18px" }}>
+      <div style={{ marginTop: "20px", fontSize: "18px" }} data-testid="result">
         {result && <p>{result}</p>}
       </div>
     </div>
